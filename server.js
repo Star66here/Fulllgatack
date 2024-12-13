@@ -10,13 +10,28 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'Shop', 'index.html')); // หน้าแรก
 });
 
+app.get('/home', (req, res) => {
+    res.sendFile(path.join(__dirname, 'Shop', 'index.html'));  // home
+});
+app.get('/products', (req, res) => {
+    res.sendFile(path.join(__dirname, 'Shop', 'product-list.html'));  // products
+});
+
+app.get('/product-Details', (req, res) => {
+    res.sendFile(path.join(__dirname, 'Shop', 'product-details.html'));  // product-details
+});
+app.get('/cart', (req, res) => {
+    res.sendFile(path.join(__dirname, 'Shop', 'cart.html'));  // Cart
+});
+app.get('/checkout', (req, res) => {
+    res.sendFile(path.join(__dirname, 'Shop', 'checkout.html'));  // Checkout
+});
+
 app.get('/account', (req, res) => {
     res.sendFile(path.join(__dirname, 'Shop', 'account.html'));  // account
 });
 
-app.get('/products', (req, res) => {
-    res.sendFile(path.join(__dirname, 'Shop', 'product-list.html'));  // account
-});
+
 
 // Error Handling
 // 404 Error Handler
