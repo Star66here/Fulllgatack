@@ -18,4 +18,13 @@ PS C:\Users\Pipop\OneDrive\เอกสาร\GitHub\Work\Fulllgatack>
     5.2 git push origin main ได้เลยถ้าเคยอัพไปแล้วรอบนึง
 
 
-6 ถ้าทำตามมาได้ขนาดนี้แล้วก็ทำตาม 1-5 ใหม่ทุกรอบที่จะอัพน่าจะให้ได้
+6 ถ้าทำตามมาได้ขนาดนี้แล้วก็ทำตาม 1-5 ใหม่ทุกรอบที่จะอัพน่าจะให้ได้  สำคัญมากๆๆๆๆๆๆๆ มึงต็องเซฟ งานดด้วยเป็นไปได้ตั้ง
+ เซฟ auto เลยจะดีมาก แล้วก็ใช้คำสั่ง git status เช็คได้ว่างานที่มึงจะอัพเนี่ยเป็นไง nothing to commit, working tree clean ถ้าขึ้นงี้คือมึงยังไม่ได้เซฟงานจ้าามันหาไม่เจอ 
+
+ 
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:
+
+อันนี้คือที่มันควรขึ้นถ้ามีการเซฟงานอะนะ  modified: สีแดงคือยังไม่ได้   git add . แล้มันจะเปลี่ยนเป็นสีเขียว แล้วก้คอมมิด แล้วก้ push ได้เลย
