@@ -5,13 +5,14 @@ const productRoutes = require('./routes/productRoutes');
 
 const app = express();
 const PORT = 3000;
+app.use(express.static(__dirname));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'Shop', 'index.html')); // หน้าแรก
+    res.sendFile(path.join(__dirname, 'index.html')); // หน้าแรก
 });
 
 app.get('/home', (req, res) => {
-    res.sendFile(path.join(__dirname, 'Shop', 'index.html'));  // home
+    res.sendFile(path.join(__dirname, 'index.html'));  // home
 });
 app.get('/products', (req, res) => {
     res.sendFile(path.join(__dirname, 'Shop', 'product-list.html'));  // products
@@ -28,7 +29,10 @@ app.get('/checkout', (req, res) => {
 });
 
 app.get('/account', (req, res) => {
-    res.sendFile(path.join(__dirname, 'Shop', 'account.html'));  // account
+    res.sendFile(path.join(__dirname, 'Shop','Login', 'account.html'));  // account
+});
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, 'Shop','Login', 'login.html'));  // login
 });
 
 
