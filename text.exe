@@ -1,0 +1,25 @@
+/project-root
+├── frontend/
+│   ├── index.html
+│   ├── product-list.html
+│   ├── product-details.html
+│   ├── cart.html
+│   ├── checkout.html
+│   ├── account.html
+│   ├── styles.css
+│   └── scripts.js
+├── backend/
+│   ├── server.js
+│   ├── routes/
+│   │   ├── productRoutes.js
+│   │   └── userRoutes.js
+│   ├── controllers/
+│   │   ├── productController.js
+│   │   └── userController.js
+│   └── models/
+│       ├── productModel.js
+│       └── userModel.js
+├── database/
+│   ├── db.js
+│   └── seeds.js
+└── README.md
