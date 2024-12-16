@@ -89,4 +89,30 @@ function updateCartUI(cart) {
     totalItems.textContent = cart.length;
     totalPrice.textContent = `$${cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)}`;
 }
+// ฟังก์ชันสำหรับลบสินค้าออกจากตะกร้า
+function removeFromCart(productId) {
+    fetch('/api/cart/remove', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id: productId }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Item removed from cart:', data);
+        updateCartUI(data);  // อัปเดต UI หลังจากลบสินค้า
+    })
+    .catch(error => {
+        console.error('Error removing item from cart:', error);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.btn-custom').forEach(button => {
+        button.addEventListener('click', () => {
+            window.location.href = '/navigation/checkout';
+        });
+    });
+});
 

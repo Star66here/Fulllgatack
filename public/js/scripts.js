@@ -66,21 +66,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-// ฟังก์ชันสำหรับลบสินค้าออกจากตะกร้า
-function removeFromCart(productId) {
-    fetch('/api/cart/remove', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ id: productId }),
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Item removed from cart:', data);
-        updateCartUI(data);  // อัปเดต UI หลังจากลบสินค้า
-    })
-    .catch(error => {
-        console.error('Error removing item from cart:', error);
-    });
-}
