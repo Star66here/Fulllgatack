@@ -1,40 +1,36 @@
 const express = require('express');
 const path = require('path');
-const userRoutes = require('./routes/userRoutes');
-const productRoutes = require('./routes/productRoutes');
+
+// นำเข้าเส้นทางต่าง ๆ
+const cartRoutes = require('./routes/cartRoutes');
+const productRoutes = require('./routes/productRoutes')
+const navigationRoutes = require('./routes/navigationRoutes')
 
 const app = express();
 const PORT = 3000;
-app.use(express.static(__dirname));
 
+// ใช้ express.json() สำหรับรับข้อมูล JSON
+app.use(express.json()); 
+
+// ใช้ static middleware เพื่อให้สามารถใช้ไฟล์จากโฟลเดอร์ 'public'
+app.use(express.static(path.join(__dirname, 'public')));
+
+// เส้นทางต่าง ๆ สำหรับการแสดง HTML
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html')); // หน้าแรก
+    res.sendFile(path.join(__dirname, 'views', 'index.html')); // หน้าแรก
 });
 
-app.get('/home', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));  // home
-});
-app.get('/products', (req, res) => {
-    res.sendFile(path.join(__dirname, 'Shop', 'product-list.html'));  // products
-});
 
-app.get('/product-Details', (req, res) => {
-    res.sendFile(path.join(__dirname, 'Shop', 'product-details.html'));  // product-details
-});
-app.get('/cart', (req, res) => {
-    res.sendFile(path.join(__dirname, 'Shop', 'cart.html'));  // Cart
-});
-app.get('/checkout', (req, res) => {
-    res.sendFile(path.join(__dirname, 'Shop', 'checkout.html'));  // Checkout
-});
-
-app.get('/account', (req, res) => {
-    res.sendFile(path.join(__dirname, 'Shop','Login', 'account.html'));  // account
-});
 app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, 'Shop','Login', 'login.html'));  // login
+    res.sendFile(path.join(__dirname, 'views', 'Login', 'login.html'));  // login
 });
 
+
+// เส้นทาง API
+app.use('/api/cart', cartRoutes); // ใช้ API ของตะกร้าสินค้า
+
+//app.use('/products', productRoutes)
+app.use('/navigation', navigationRoutes)
 
 
 // Error Handling
@@ -48,8 +44,8 @@ app.use((err, req, res, next) => {
     console.error(err.stack); // แสดงรายละเอียดข้อผิดพลาดใน console
     res.status(500).json({ error: 'Internal Server Error' });
 });
+
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
- 
