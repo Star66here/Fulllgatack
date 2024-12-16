@@ -1,4 +1,7 @@
 // public/js/scripts.js
+import productImages from './productImages.js';
+
+
 document.addEventListener('DOMContentLoaded', () => {
     // ดึงข้อมูลตะกร้าจาก API
     fetch('/api/cart')
@@ -11,6 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error fetching cart data:', error);
         });
 });
+
+
+
+
 
 // ฟังก์ชัน updateCartUI สำหรับอัปเดต UI
 function updateCartUI(cart) {
@@ -32,7 +39,7 @@ function updateCartUI(cart) {
             const imgCol = document.createElement('div');
             imgCol.classList.add('col-3', 'text-center');
             const image = document.createElement('img');
-            image.src = 'default-image.jpg';
+            image.src = productImages[item.id] || 'images/default.jpg';;
             image.alt = item.name;
             image.classList.add('img-fluid', 'rounded');
             imgCol.appendChild(image);
