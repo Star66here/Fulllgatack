@@ -1,26 +1,41 @@
 // routes/cartRoutes.js
 const express = require('express');
 const router = express.Router();
-
+const { getProductById } = require('../data/productModel'); 
 // ตัวแปรตะกร้าสินค้า
 let cart = [];
 
-// API สำหรับเพิ่มสินค้าลงในตะกร้า
-router.post('/add', (req, res) => {
-    const { id, name, price } = req.body;
+// เส้นทางสำหรับเพิ่มสินค้าลงในตะกร้า
+router.post('/add', async (req, res) => {
+    const { id } = req.body;  // รับเฉพาะ id จาก req.body
 
-    // ตรวจสอบว่ามีสินค้าในตะกร้าหรือไม่
-    const existingItem = cart.find(item => item.id === id);
-    if (existingItem) {
-        existingItem.quantity++;
-    } else {
-        cart.push({ id, name, price, quantity: 1 });
+    try {
+        // ดึงข้อมูลสินค้า (เฉพาะ name และ price) จากฐานข้อมูลโดยใช้ id
+        const product = await getProductById(id);
+
+        // ตรวจสอบว่ามีสินค้าในตะกร้าหรือไม่
+        const existingItem = cart.find(item => item.id === id);
+
+        if (existingItem) {
+            existingItem.quantity++;  // ถ้ามีอยู่แล้ว เพิ่มจำนวนสินค้า
+        } else {
+            // ถ้ายังไม่มีสินค้าในตะกร้า ให้เพิ่มสินค้าลงตะกร้า
+            cart.push({
+                id: id,
+                name: product.name,     // ใช้ name ที่ดึงมาจากฐานข้อมูล
+                price: product.price,   // ใช้ price ที่ดึงมาจากฐานข้อมูล
+                quantity: 1
+            });
+        }
+
+        console.log('Current cart:', cart);
+
+        // ส่งข้อมูลตะกร้ากลับไปยัง frontend
+        res.json(cart);
+    } catch (error) {
+        console.error('Error adding product to cart:', error);
+        res.status(500).json({ message: 'Unable to add product to cart', error: error.message });
     }
-
-    console.log('Current cart:', cart);
-
-    // ส่งข้อมูลตะกร้ากลับไปยัง frontend
-    res.json(cart);
 });
 
 // API สำหรับดึงข้อมูลตะกร้า

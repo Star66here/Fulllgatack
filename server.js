@@ -3,7 +3,7 @@ const path = require('path');
 
 // นำเข้าเส้นทางต่าง ๆ
 const cartRoutes = require('./routes/cartRoutes');
-const productRoutes = require('./routes/productRoutes')
+
 const navigationRoutes = require('./routes/navigationRoutes')
 
 const app = express();
