@@ -3,7 +3,6 @@ const path = require('path');
 
 // นำเข้าเส้นทางต่าง ๆ
 const cartRoutes = require('./routes/cartRoutes');
-
 const navigationRoutes = require('./routes/navigationRoutes')
 
 const app = express();
@@ -29,7 +28,6 @@ app.get('/login', (req, res) => {
 // เส้นทาง API
 app.use('/api/cart', cartRoutes); // ใช้ API ของตะกร้าสินค้า
 
-//app.use('/products', productRoutes)
 app.use('/navigation', navigationRoutes)
 
 
