@@ -1,5 +1,5 @@
 // app.js
-const { getProductById, createProduct } = require('./productModel');  // นำเข้าฟังก์ชัน getProductById
+const { getProductById, createProduct } = require('../controllers/productController');  // นำเข้าฟังก์ชัน getProductById
 
 createProduct('Green Cavendish Banana',1.00,30,'Cavendish Bananas')
 createProduct('Moon Cavendish Banana',1.00,30,'Cavendish Bananas')

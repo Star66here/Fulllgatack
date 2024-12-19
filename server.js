@@ -1,49 +1,43 @@
 const express = require('express');
 const path = require('path');
 
-// นำเข้าเส้นทางต่าง ๆ
-const cartRoutes = require('./routes/cartRoutes');
-const navigationRoutes = require('./routes/navigationRoutes')
+// นำเข้าเส้นทางของโมดูลที่เกี่ยวข้อง
+const cartRoutes = require('./routes/cartRoutes'); // เส้นทางสำหรับจัดการตะกร้าสินค้า
+const navigationRoutes = require('./routes/navigationRoutes'); // เส้นทางสำหรับการนำทาง
+const orderRoutes = require('./routes/orderRoutes'); // เส้นทางสำหรับการสั่งซื้อสินค้า
 
 const app = express();
-const PORT = 3000;
+const PORT = 3000; // กำหนดพอร์ตสำหรับเซิร์ฟเวอร์
 
-// ใช้ express.json() สำหรับรับข้อมูล JSON
-app.use(express.json()); 
+// ใช้ express.json() เพื่อจัดการข้อมูล JSON ในคำขอ
+app.use(express.json());
 
-// ใช้ static middleware เพื่อให้สามารถใช้ไฟล์จากโฟลเดอร์ 'public'
+// ใช้ static middleware เพื่อให้สามารถเข้าถึงไฟล์ในโฟลเดอร์ 'public'
 app.use(express.static(path.join(__dirname, 'public')));
 
-// เส้นทางต่าง ๆ สำหรับการแสดง HTML
+// เส้นทางสำหรับแสดงหน้า HTML
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'views', 'index.html')); // หน้าแรก
 });
 
-
-app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'Login', 'login.html'));  // login
-});
-
-
 // เส้นทาง API
-app.use('/api/cart', cartRoutes); // ใช้ API ของตะกร้าสินค้า
+app.use('/api/cart', cartRoutes); // เส้นทางสำหรับ API ของตะกร้าสินค้า
+app.use('/navigation', navigationRoutes); // เส้นทางสำหรับการนำทาง
+app.use('/checkout', orderRoutes); // เส้นทางสำหรับการชำระเงิน
 
-app.use('/navigation', navigationRoutes)
-
-
-// Error Handling
-// 404 Error Handler
+// การจัดการข้อผิดพลาด
+// กรณีที่ไม่พบทรัพยากร (404)
 app.use((req, res) => {
-    res.status(404).json({ error: 'Resource not found' });
+    res.status(404).json({ error: 'Resource not found' }); // ส่งข้อผิดพลาด 404
 });
 
-// General Error Handler
+// กรณีเกิดข้อผิดพลาดทั่วไป (500)
 app.use((err, req, res, next) => {
     console.error(err.stack); // แสดงรายละเอียดข้อผิดพลาดใน console
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: 'Internal Server Error' }); // ส่งข้อผิดพลาด 500
 });
 
-// Start the server
+// เริ่มต้นเซิร์ฟเวอร์
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(`Server is running on http://localhost:${PORT}`); // แสดงข้อความเมื่อเซิร์ฟเวอร์เริ่มทำงาน
 });

@@ -2,7 +2,7 @@
 const productImages = {
     1: '/picture/banana1.jpg',
     2: '/picture/banana2.jpg',
-    '67616b5c7b6f628c20d107c0' : '/picture/banana3.jpg',
+    '67616d7cb8e83a6eb26b65f7' : '/picture/banana3.jpg',
     4: '/picture/watermelon1.jpg',
     5: '/picture/G1_1.jpg',
     6: '/picture/G1_2.jpg',

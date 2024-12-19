@@ -12,6 +12,9 @@ router.post('/add', async (req, res) => {
     try {
         // ดึงข้อมูลสินค้า (เฉพาะ name และ price) จากฐานข้อมูลโดยใช้ id
         const product = await getProductById(id);
+        if (!product) {
+            return res.status(404).json({ message: 'Product not found' });
+        }
 
         // ตรวจสอบว่ามีสินค้าในตะกร้าหรือไม่
         const existingItem = cart.find(item => item.id === id);
