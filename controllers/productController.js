@@ -1,3 +1,4 @@
+// controllers/productController.js
 const Product = require('../data/productModel')
 
 const createProduct = async (name, price, stock = 0, category = '') => {
@@ -37,4 +38,37 @@ const getProductById = async (id) => {
   }
 };
 
-module.exports = {createProduct,getProductById};
+// ฟังก์ชันลดจำนวนสินค้าตาม ID
+async function reduceStockById(productId, quantityToReduce) {
+  try {
+    // ตรวจสอบว่า quantityToReduce เป็นค่าบวกและมากกว่า 0 หรือไม่
+    if (quantityToReduce <= 0) {
+      throw new Error('Quantity to reduce must be greater than 0');
+    }
+
+    // ค้นหาสินค้าจาก productId
+    const product = await Product.findById(productId);
+    if (!product) {
+      throw new Error('Product not found');
+    }
+
+    // ตรวจสอบว่า stock ในสินค้ามีเพียงพอหรือไม่
+    if (product.stock < quantityToReduce) {
+      throw new Error('Not enough stock to reduce');
+    }
+
+    // ลดจำนวนสต๊อกสินค้า
+    const updatedProduct = await Product.findByIdAndUpdate(
+      productId, // ค้นหาสินค้าด้วย ObjectId
+      { $inc: { stock: -quantityToReduce } }, // ลดจำนวนสินค้า
+      { new: true } // คืนค่าข้อมูลที่อัปเดต
+    );
+
+    // แสดงผลลัพธ์หลังจากลดจำนวนสต๊อก
+    console.log('Stock reduced successfully:', updatedProduct);
+  } catch (err) {
+    console.error('Error updating stock:', err.message);
+  }
+}
+
+module.exports = {createProduct,getProductById,reduceStockById};

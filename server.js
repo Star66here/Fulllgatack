@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 
 // นำเข้าเส้นทางของโมดูลที่เกี่ยวข้อง
-const cartRoutes = require('./routes/cartRoutes'); // เส้นทางสำหรับจัดการตะกร้าสินค้า
+const  { router: cartRoutes }  = require('./routes/cartRoutes'); // เส้นทางสำหรับจัดการตะกร้าสินค้า
 const navigationRoutes = require('./routes/navigationRoutes'); // เส้นทางสำหรับการนำทาง
 const orderRoutes = require('./routes/orderRoutes'); // เส้นทางสำหรับการสั่งซื้อสินค้า
 

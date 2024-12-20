@@ -1,7 +1,7 @@
-// routes/cartRoutes.js
 const express = require('express');
 const router = express.Router();
-const { getProductById } = require('../data/productModel'); 
+const productController = require('../controllers/productController');
+
 // ตัวแปรตะกร้าสินค้า
 let cart = [];
 
@@ -9,9 +9,13 @@ let cart = [];
 router.post('/add', async (req, res) => {
     const { id } = req.body;  // รับเฉพาะ id จาก req.body
 
+    if (!id) {
+        return res.status(400).json({ message: 'Product ID is required' });
+    }
+
     try {
         // ดึงข้อมูลสินค้า (เฉพาะ name และ price) จากฐานข้อมูลโดยใช้ id
-        const product = await getProductById(id);
+        const product = await productController.getProductById(id);
         if (!product) {
             return res.status(404).json({ message: 'Product not found' });
         }
@@ -51,15 +55,19 @@ router.get('/', (req, res) => {
 router.post('/remove', (req, res) => {
     const { id } = req.body;
 
+    if (!id) {
+        return res.status(400).json({ message: 'Product ID is required to remove' });
+    }
+
     const index = cart.findIndex(item => item.id === id);
     if (index > -1) {
         cart.splice(index, 1); // ลบสินค้าออกจาก cart
+        console.log('Updated cart:', cart);
+        res.json(cart);
+    } else {
+        return res.status(404).json({ message: 'Product not found in cart' });
     }
-
-    console.log('Updated cart:', cart);
-
-    // ส่งข้อมูลตะกร้ากลับไปยัง frontend
-    res.json(cart);
 });
 
-module.exports = router;
+  
+module.exports = { router, cart} ;

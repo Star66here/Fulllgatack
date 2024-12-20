@@ -28,4 +28,4 @@ const productSchema = new mongoose.Schema({
 const Product = mongoose.model('Product', productSchema); // สร้าง Model 'Product' จาก Schema 'productSchema'
 
 // ส่งออก Model เพื่อใช้งานในไฟล์อื่น
-module.exports = { Product };
+module.exports = Product ;

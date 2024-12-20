@@ -1,14 +1,10 @@
-import cartUtils from './localCart.js';
 document.addEventListener('DOMContentLoaded', () => {
     // เมื่อโหลด DOM เสร็จแล้ว ค้นหาปุ่มทั้งหมดที่มีคลาส .btn-custom
     document.querySelectorAll('.btn-custom').forEach(button => {
         button.addEventListener('click', (event) => {
             // ดึงข้อมูลจาก attributes ของปุ่ม
             const productId = event.target.dataset.id;
-
-            // เรียกฟังก์ชันจาก localCart.js เพื่อเพิ่มสินค้าใน LocalStorage
-            cartUtils.addToLocalCart(productId);
-
+  
             // ส่งข้อมูลไปยังเซิร์ฟเวอร์
             fetch('/api/cart/add', {
                 method: 'POST',
@@ -28,6 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
+
+
 
 
     // เพิ่มการทำงานสำหรับปุ่ม Remove
