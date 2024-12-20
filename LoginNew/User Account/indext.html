@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Account</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>บัญชีผู้ใช้งาน</h1>
+
+        <!-- ฟังก์ชันค้นหารายการสั่งซื้อ -->
+        <section>
+            <h2>ค้นหารายการสั่งซื้อ</h2>
+            <input type="text" id="search-input" placeholder="ค้นหาด้วยรหัสสินค้า" />
+        </section>
+
+        <!-- ดูรายการสั่งซื้อที่ผ่านมา -->
+        <section>
+            <h2>ดูรายการสั่งซื้อที่ผ่านมา</h2>
+            <table id="orders-table">
+                <thead>
+                    <tr>
+                        <th>รหัสสินค้า</th>
+                        <th>สินค้า</th>
+                        <th>วันที่สั่งซื้อ</th>
+                        <th>ชื่อผู้สั่งสินค้า</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- รายการสั่งซื้อจะถูกเพิ่มที่นี่ -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- แก้ไขข้อมูลส่วนตัว -->
+        <section>
+            <h2>แก้ไขข้อมูลส่วนตัว</h2>
+            <form id="user-form">
+                <label>
+                    ชื่อ:
+                    <input type="text" id="user-name" required>
+                </label>
+                <br>
+                <label>
+                    อีเมล:
+                    <input type="email" id="user-email" required>
+                </label>
+                <br>
+                <button type="submit">บันทึกข้อมูล</button>
+            </form>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

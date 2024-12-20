@@ -4,10 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', (event) => {
             // ดึงข้อมูลจาก attributes ของปุ่ม
             const productId = event.target.dataset.id;
-            const productName = event.target.dataset.name;
-            const productPrice = parseFloat(event.target.dataset.price);  // ดึงราคาสินค้า
-            
-            // ส่งข้อมูลสินค้าที่เลือกไปยังเซิร์ฟเวอร์เพื่อเพิ่มลงในตะกร้า
+  
+            // ส่งข้อมูลไปยังเซิร์ฟเวอร์
             fetch('/api/cart/add', {
                 method: 'POST',
                 headers: {
@@ -15,20 +13,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 body: JSON.stringify({
                     id: productId,
-                    name: productName,
-                    price: productPrice,
                 }),
             })
             .then(response => response.json())
             .then(data => {
                 console.log('Item added to cart:', data);
-                
             })
             .catch(error => {
                 console.error('Error adding item to cart:', error);
             });
         });
     });
+
+
+
+
     // เพิ่มการทำงานสำหรับปุ่ม Remove
     document.querySelectorAll('.remove-item').forEach(button => {
         button.addEventListener('click', (event) => {
