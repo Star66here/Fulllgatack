@@ -1,5 +1,5 @@
 // controllers/productController.js
-const { Product, Order } = require('../data/productModel');
+const { Product, Counter } = require('../data/productModel');
 
 const createProduct = async (name, price, stock = 0, category = '') => {
     try {
@@ -94,5 +94,18 @@ async function increaseStockById(productId, quantityToAdd) {
       throw err; // ส่งข้อผิดพลาดเพื่อให้สามารถจัดการได้ในที่อื่น
   }
 }
+async function getNextOrderId() {
+  try {
+      const counter = await Counter.findOneAndUpdate(
+          { name: 'orderId' }, 
+          { $inc: { value: 1 } }, 
+          { new: true, upsert: true }
+      );
+      return `Order #${String(counter.value).padStart(5, '0')}`;
+  } catch (err) {
+      console.error('Error generating order ID:', err);
+      return null; // หากเกิดข้อผิดพลาด, คืนค่า null
+  }
+}
 
-module.exports = {createProduct,getProductById,reduceStockById};
+module.exports = {createProduct,getProductById,reduceStockById,getNextOrderId};
