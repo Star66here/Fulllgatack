@@ -10,9 +10,8 @@ const productImages = {
     '6761928e414982882fbb643d': '/picture/GrandNainBanana.jpg',
     '6761928e414982882fbb643e': '/picture/RedMauritiusBanana(Red Banana).jpg',
     '6761928e414982882fbb643f': '/picture/WildBanana.jpg',
-    14: '/picture/G4_1.jpg',
-    15: '/picture/G4_2.jpg',
-    16: '/picture/G4_3.jpg'
+    '6761928e414982882fbb6440': '/picture/TheppanomBanana.jpg',
+    '6761928e414982882fbb6441': '/picture/ChatPhra-InBanana.jpg',
 };
 
 // Export object นี้สำหรับใช้งานในไฟล์อื่น
