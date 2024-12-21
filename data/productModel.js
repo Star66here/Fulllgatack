@@ -24,8 +24,29 @@ const productSchema = new mongoose.Schema({
   category: { type: String },                  // หมวดหมู่สินค้า
 });
 
+
 // สร้าง Model จาก Schema
+
+// Schema สำหรับคำสั่งซื้อ
+const orderSchema = new mongoose.Schema({
+  orderId: { type: String, required: true, unique: true },  // เพิ่มฟิลด์ orderId
+  // accountId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }, // ID ของผู้ใช้
+  name: { type: String, required: true },        // ชื่อผู้สั่งซื้อ
+  address: { type: String, required: true },     // ที่อยู่สำหรับจัดส่ง
+  paymentMethod: { type: String, required: true }, // วิธีการชำระเงิน
+  cart: [                                        // สินค้าในคำสั่งซื้อ
+    {
+      id: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true }, // ID สินค้า
+      name: { type: String, required: true },  // ชื่อสินค้า
+      price: { type: Number, required: true }, // ราคา
+      quantity: { type: Number, required: true }, // จำนวนสินค้า
+    }
+  ],
+  totalPrice: { type: Number, required: true },  // ราคารวมทั้งหมด
+  date: { type: Date, default: Date.now },       // วันที่สั่งซื้อ
+});
 const Product = mongoose.model('Product', productSchema); // สร้าง Model 'Product' จาก Schema 'productSchema'
 
+const Order = mongoose.model('Order', orderSchema);
 // ส่งออก Model เพื่อใช้งานในไฟล์อื่น
-module.exports = Product ;
+module.exports = {Product,Order} ;

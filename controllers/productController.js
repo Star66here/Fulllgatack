@@ -1,5 +1,5 @@
 // controllers/productController.js
-const Product = require('../data/productModel')
+const { Product, Order } = require('../data/productModel');
 
 const createProduct = async (name, price, stock = 0, category = '') => {
     try {
@@ -68,6 +68,30 @@ async function reduceStockById(productId, quantityToReduce) {
     console.log('Stock reduced successfully:', updatedProduct);
   } catch (err) {
     console.error('Error updating stock:', err.message);
+  }
+}
+// ฟังก์ชันเพิ่มจำนวนสินค้าใน stock
+async function increaseStockById(productId, quantityToAdd) {
+  try {
+      // ค้นหาสินค้าตาม ID
+      const product = await Product.findById(productId);
+
+      if (!product) {
+          throw new Error('Product not found');
+      }
+
+      // เพิ่มจำนวน stock
+      product.stock += quantityToAdd;
+
+      // บันทึกการเปลี่ยนแปลง
+      await product.save();
+
+      console.log(`Product ${product.name} stock updated. New stock: ${product.stock}`);
+
+      return product; // คืนค่าข้อมูลสินค้าใหม่ที่อัพเดต
+  } catch (err) {
+      console.error('Error increasing stock:', err);
+      throw err; // ส่งข้อผิดพลาดเพื่อให้สามารถจัดการได้ในที่อื่น
   }
 }
 
