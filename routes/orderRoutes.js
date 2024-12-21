@@ -4,16 +4,6 @@ const productController = require('../controllers/productController');
 const { cart } = require('./cartRoutes'); // Import cart from cartRoutes
 const { Order } = require('../data/productModel');
 
-// ฟังก์ชันสำหรับสร้าง OrderId
-const generateOrderId = async () => {
-    const lastOrder = await Order.findOne().sort({ createdAt: -1 }); // หาคำสั่งซื้อล่าสุด
-    const lastOrderId = lastOrder ? parseInt(lastOrder.orderId.split('#')[1]) : 0; // ดึงเลขจาก OrderId
-    const newOrderId = lastOrderId + 1; // เพิ่มหมายเลขคำสั่งซื้อ
-    return `Order #${newOrderId}`; // สร้าง OrderId ใหม่
-};
-
-
-
 // เส้นทางสำหรับสร้างคำสั่งซื้อใหม่
 router.post('/submit-order', async (req, res) => {
     const { name, address, paymentMethod } = req.body;
@@ -21,20 +11,17 @@ router.post('/submit-order', async (req, res) => {
     // ตรวจสอบว่าข้อมูลครบถ้วนหรือไม่
     if (!name || !address || !paymentMethod) {
         return res.status(400).json({ error: 'All fields are required.' });
-    }
-
-    // ตรวจสอบว่ามีสินค้าหรือไม่ใน cart
-    if (cart.length === 0) {
-        return res.status(400).json({ error: 'Cart is empty. Please add items to your cart.' });
-    }
-
+    } 
     // คำนวณราคารวม
     const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    const orderId = await generateOrderId();  // สร้าง OrderId ใหม่
+    const orderId = await productController.getNextOrderId(); // ดึง orderId ที่ไม่ซ้ำ
+    if (!orderId) {
+        return res.status(500).json({ error: 'Failed to generate unique order ID.' });
+    }
+
     // สร้างคำสั่งซื้อใหม่
     const newOrder = new Order({
         orderId,
-        // accountId: req.userId,
         name,
         address,
         paymentMethod,
