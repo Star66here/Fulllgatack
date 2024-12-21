@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
         { selector: '#product-details-button', target: '/navigation/product-details' },
         { selector: '#cart-button', target: '/navigation/cart' },
         { selector: '#checkout-button', target: '/navigation/checkout' },
-        { selector: '#account-button', target: '/navigation/account' }
+        { selector: '#account-button', target: '/navigation/account' },
+        { selector: '#logout-button', target: '/navigation/login' }
     ];
 
     // วนลูปผ่านแต่ละปุ่มและเพิ่ม event listener

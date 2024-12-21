@@ -32,5 +32,10 @@ router.get('/account', (req, res) => {
     res.sendFile(path.join(__dirname, '../views/login/account.html')); // ส่งไฟล์ HTML บัญชีผู้ใช้
 });
 
+// เส้นทางไปยังหน้าล็อกอิน
+router.get('/login', (req, res) => {  
+    res.sendFile(path.join(__dirname, '../views/login/login.html')); // ส่งไฟล์ HTML ล็อกอิน
+});
+
 // ส่งออกโมดูล Router เพื่อใช้งานในไฟล์อื่น
 module.exports = router;
