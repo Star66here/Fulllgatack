@@ -5,6 +5,7 @@ const path = require('path');
 const  { router: cartRoutes }  = require('./routes/cartRoutes'); // เส้นทางสำหรับจัดการตะกร้าสินค้า
 const navigationRoutes = require('./routes/navigationRoutes'); // เส้นทางสำหรับการนำทาง
 const orderRoutes = require('./routes/orderRoutes'); // เส้นทางสำหรับการสั่งซื้อสินค้า
+const  accountRoutes = require('./routes/accountRoutes')
 
 const app = express();
 const PORT = 3000; // กำหนดพอร์ตสำหรับเซิร์ฟเวอร์
@@ -24,6 +25,7 @@ app.get('/', (req, res) => {
 app.use('/api/cart', cartRoutes); // เส้นทางสำหรับ API ของตะกร้าสินค้า
 app.use('/navigation', navigationRoutes); // เส้นทางสำหรับการนำทาง
 app.use('/checkout', orderRoutes); // เส้นทางสำหรับการชำระเงิน
+app.use('/account',accountRoutes);
 
 // การจัดการข้อผิดพลาด
 // กรณีที่ไม่พบทรัพยากร (404)

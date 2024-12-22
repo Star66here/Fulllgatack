@@ -25,6 +25,7 @@ router.post('/submit-order', async (req, res) => {
         name,
         address,
         paymentMethod,
+        Status: 'Pending',
         date: new Date(),
         cart, // เก็บข้อมูลสินค้าที่ถูกเลือกในคำสั่งซื้อ
         totalPrice

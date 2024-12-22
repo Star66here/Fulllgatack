@@ -31,6 +31,7 @@ const orderSchema = new mongoose.Schema({
   name: { type: String, required: true },
   address: { type: String, required: true },
   paymentMethod: { type: String, required: true },
+  Status: {  type: String, required: true},
   date: { type: Date, default: Date.now },
   cart: { type: Array, required: true },
   totalPrice: { type: Number, required: true }
