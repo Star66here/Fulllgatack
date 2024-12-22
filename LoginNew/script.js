@@ -40,3 +40,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     
 });
+document.addEventListener('DOMContentLoaded', () => {
+    const signUpForm = document.getElementById('sign-up-form');
+    const signInForm = document.getElementById('sign-in-form');
+
+    // เปลี่ยนไปที่ฟอร์ม Sign In หลังจาก Sign Up
+    if (window.location.search.includes('showSignin')) {
+        signUpForm.style.display = 'none';
+        signInForm.style.display = 'block';
+    }
+});
+
