@@ -9,6 +9,7 @@ let cart = [];
 router.post('/add', async (req, res) => {
     const { id } = req.body;  // รับเฉพาะ id จาก req.body
 
+    // ตรวจสอบว่ามี id หรือไม่
     if (!id) {
         return res.status(400).json({ message: 'Product ID is required' });
     }
@@ -24,9 +25,10 @@ router.post('/add', async (req, res) => {
         const existingItem = cart.find(item => item.id === id);
 
         if (existingItem) {
-            existingItem.quantity++;  // ถ้ามีอยู่แล้ว เพิ่มจำนวนสินค้า
+            // ถ้ามีสินค้าในตะกร้าแล้ว, เพิ่มจำนวนสินค้า
+            existingItem.quantity++;
         } else {
-            // ถ้ายังไม่มีสินค้าในตะกร้า ให้เพิ่มสินค้าลงตะกร้า
+            // ถ้าไม่มีสินค้าในตะกร้า, เพิ่มสินค้าใหม่ลงตะกร้า
             cart.push({
                 id: id,
                 name: product.name,     // ใช้ name ที่ดึงมาจากฐานข้อมูล
@@ -35,7 +37,7 @@ router.post('/add', async (req, res) => {
             });
         }
 
-        console.log('Current cart:', cart);
+        console.log('Current cart:', cart);  // แสดงข้อมูลตะกร้าปัจจุบัน
 
         // ส่งข้อมูลตะกร้ากลับไปยัง frontend
         res.json(cart);
@@ -55,19 +57,25 @@ router.get('/', (req, res) => {
 router.post('/remove', (req, res) => {
     const { id } = req.body;
 
+    // ตรวจสอบว่ามี id หรือไม่
     if (!id) {
         return res.status(400).json({ message: 'Product ID is required to remove' });
     }
 
     const index = cart.findIndex(item => item.id === id);
+
+    // หากพบสินค้าในตะกร้าให้ลบออก
     if (index > -1) {
-        cart.splice(index, 1); // ลบสินค้าออกจาก cart
-        console.log('Updated cart:', cart);
+        cart.splice(index, 1);  // ลบสินค้าออกจาก cart
+        console.log('Updated cart:', cart);  // แสดงข้อมูลตะกร้าที่อัพเดต
+
+        // ส่งข้อมูลตะกร้าที่อัพเดตกลับไปยัง frontend
         res.json(cart);
     } else {
+        // หากไม่พบสินค้าที่ต้องการลบ
         return res.status(404).json({ message: 'Product not found in cart' });
     }
 });
 
   
-module.exports = { router, cart} ;
+module.exports = { router, cart };
