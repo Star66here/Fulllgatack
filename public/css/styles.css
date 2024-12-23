@@ -3,6 +3,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    padding-bottom: 80px;
 }
 
 header {
@@ -359,10 +360,6 @@ header {
     }
 }
 
-
-
-
-
 .product-list {
     padding: 20px;
 }
@@ -448,6 +445,44 @@ header {
     transform: scale(1.05);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
+
+/* ปรับขนาดของภาพใน carousel */
+.carousel-inner img {
+    max-width: 40%;  /* กำหนดขนาดสูงสุดของภาพ */
+    height: auto;    /* ให้ความสูงปรับอัตโนมัติตามสัดส่วน */
+    margin: 0 auto;  /* จัดกลางภาพ */
+}
+
+/* ปรับขนาดและความเด่นของปุ่ม Carousel */
+.carousel-control-prev, .carousel-control-next {
+    font-size: 2rem; /* ขนาดตัวอักษร */
+    background-color: rgba(0, 0, 0, 0.5); /* สีพื้นหลังโปร่งใส */
+    color: white; /* สีของไอคอน */
+    border-radius: 50%; /* ทำให้ปุ่มเป็นวงกลม */
+    width: 50px; /* กำหนดขนาดปุ่ม */
+    height: 50px; /* กำหนดขนาดปุ่ม */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: white; /* สีของไอคอน */
+    width: 20px; /* ขนาดไอคอน */
+    height: 20px; /* ขนาดไอคอน */
+}
+
+.carousel-control-prev, .carousel-control-next {
+    background-color: rgba(0, 0, 0, 0.5);  /* พื้นหลังมืด */
+    padding: 10px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;  /* การเปลี่ยนสีพื้นหลัง */
+}
+
+.carousel-control-prev:hover, .carousel-control-next:hover {
+    background-color: rgba(0, 0, 0, 0.8);  /* เปลี่ยนสีเมื่อ hover */
+}
+
 
 .d-flex {
     display: flex;
