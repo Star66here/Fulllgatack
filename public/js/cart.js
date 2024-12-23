@@ -96,7 +96,7 @@ function createQuantityInput(item) {
 function updateCartSummary(cart) {
     const totalItems = document.getElementById('total-items');
     const totalPrice = document.getElementById('total-price');
-    totalItems.textContent = cart.length;
+    totalItems.textContent = cart.reduce((total, item) => total + item.quantity, 0);
     totalPrice.textContent = `$${cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)}`;
 }
 

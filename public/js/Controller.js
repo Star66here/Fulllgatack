@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // เมื่อโหลด DOM เสร็จแล้ว ค้นหาปุ่มทั้งหมดที่มีคลาส .btn-custom
-    document.querySelectorAll('.btn-custom').forEach(button => {
+    document.querySelectorAll('.add-to-cart').forEach(button => {
         button.addEventListener('click', (event) => {
             // ดึงข้อมูลจาก attributes ของปุ่ม
             const productId = event.target.dataset.id;
