@@ -1,7 +1,16 @@
 async function fetchData() {
+    const user = JSON.parse(sessionStorage.getItem('user')); // ดึงข้อมูลผู้ใช้จาก sessionStorage
+
+    if (!user || !user.id) {
+        console.error('User not logged in or user ID not found.');
+        return [];
+    }
+
     try {
-        const response = await fetch('/account/OrderHistory');
+        // ส่ง user.id ไปยังเซิร์ฟเวอร์ในการดึงข้อมูลประวัติการสั่งซื้อ
+        const response = await fetch(`/account/OrderHistory?userId=${user.id}`);
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        
         const data = await response.json();
 
         // ตรวจสอบและจัดการข้อมูลอาร์เรย์ซ้อน

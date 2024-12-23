@@ -28,6 +28,7 @@ const Product = mongoose.model('Product', productSchema);
 // Order Schema
 const orderSchema = new mongoose.Schema({
   orderId: { type: String, required: true, unique: true },
+  userId: { type: String, required: true },
   name: { type: String, required: true },
   address: { type: String, required: true },
   paymentMethod: { type: String, required: true },
@@ -46,5 +47,42 @@ const counterSchema = new mongoose.Schema({
 
 const Counter = mongoose.model('Counter', counterSchema);
 
+// สร้าง Schema สำหรับ User
+
+// กำหนด Schema สำหรับ Users
+const userSchema = new mongoose.Schema({
+  accountId: {
+      type: String,
+      unique: true, // ค่า accountId ต้องไม่ซ้ำ
+  },
+  name: {
+      type: String,
+      required: true,
+  },
+  email: {
+      type: String,
+      required: true,
+      unique: true, // อีเมลต้องไม่ซ้ำ
+      match: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, // ตรวจสอบรูปแบบอีเมล
+  },
+  password: {
+      type: String,
+      required: true,
+  },
+}, { timestamps: true }); // เพิ่ม createdAt และ updatedAt อัตโนมัติ
+
+// ฟังก์ชันสร้าง accountId อัตโนมัติ
+userSchema.pre('save', async function (next) {
+  if (!this.accountId) {
+      // สร้าง accountId โดยใช้การต่อสตริง เช่น "ACC" + เวลาปัจจุบัน
+      this.accountId = `ACC${Date.now()}${Math.floor(1000 + Math.random() * 9000)}`;
+  }
+
+  // เรียก next() เพื่อให้การบันทึกดำเนินต่อไป
+  next();
+});
+
+const Users = mongoose.model('User', userSchema);
+
 // ส่งออก Model เพื่อใช้งานในไฟล์อื่น
-module.exports = {Counter,Product,Order} ;
+module.exports = {Counter,Product,Order,Users} ;

@@ -6,6 +6,7 @@ const  { router: cartRoutes }  = require('./routes/cartRoutes'); // เส้น
 const navigationRoutes = require('./routes/navigationRoutes'); // เส้นทางสำหรับการนำทาง
 const orderRoutes = require('./routes/orderRoutes'); // เส้นทางสำหรับการสั่งซื้อสินค้า
 const  accountRoutes = require('./routes/accountRoutes')
+const loginRoutes = require('./routes/loginRountrs'); // เส้นทางสำหรับการล็อกอิน
 
 const app = express();
 const PORT = 3000; // กำหนดพอร์ตสำหรับเซิร์ฟเวอร์
@@ -26,6 +27,7 @@ app.use('/api/cart', cartRoutes); // เส้นทางสำหรับ API
 app.use('/navigation', navigationRoutes); // เส้นทางสำหรับการนำทาง
 app.use('/checkout', orderRoutes); // เส้นทางสำหรับการชำระเงิน
 app.use('/account',accountRoutes);
+app.use('/login', loginRoutes); // เส้นทางสำหรับการล็อกอิน
 
 // การจัดการข้อผิดพลาด
 // กรณีที่ไม่พบทรัพยากร (404)

@@ -1,5 +1,5 @@
 // controllers/productController.js
-const { Product, Counter, Order } = require('../data/productModel');
+const { Product, Counter, Order } = require('../data/Model');
 
 // ฟังก์ชันสร้างสินค้าลงในฐานข้อมูล
 const createProduct = async (name, price, stock = 0, category = '') => {
@@ -120,14 +120,14 @@ const getOrderById = async (id) => {
 };
 
 // ฟังก์ชันค้นหาคำสั่งซื้อจากชื่อ
-async function findOrderByName(searchName) {
+async function findOrderByuserId(searchuserId) {
   try {
-    const result = await Order.find({ name: searchName }).select('orderId Status date totalPrice');
+    const result = await Order.find({ userId: searchuserId }).select('orderId Status date totalPrice');
 
     if (result.length > 0) {
       console.log("Found orders:", result);
     } else {
-      console.log("No orders found with the name:", searchName);
+      console.log("No orders found with the name:", searchuserId);
     }
 
     return result;  // คืนค่าผลลัพธ์
@@ -137,4 +137,4 @@ async function findOrderByName(searchName) {
   }
 }
 
-module.exports = { createProduct, getProductById, reduceStockById, getNextOrderId, findOrderByName };
+module.exports = { createProduct, getProductById, reduceStockById, getNextOrderId, findOrderByuserId };

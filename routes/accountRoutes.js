@@ -3,10 +3,10 @@ const router = express.Router();
 const productController = require('../controllers/productController');
 
 // ฟังก์ชันที่ค้นหาคำสั่งซื้อโดยใช้ชื่อ
-async function findOrder() {
+async function findOrder(userId) {
     try {
         // เรียกใช้ฟังก์ชัน findOrderByName จาก productController เพื่อค้นหาคำสั่งซื้อ
-        const result = await productController.findOrderByName('xcx');
+        const result = await productController.findOrderByuserId(userId);
         return result;  // คืนค่าผลลัพธ์ที่ได้จากการค้นหา
     } catch (error) {
         console.error('Error finding order:', error);
@@ -17,8 +17,12 @@ async function findOrder() {
 // กำหนด route สำหรับ /OrderHistory
 router.get('/OrderHistory', async (req, res) => {
     try {
+        const userId = req.query.userId; // รับค่าจาก query parameter
+        if (!userId) {
+        return res.status(400).send('User ID is required');
+        }
         // เรียกใช้ฟังก์ชัน findOrder เพื่อค้นหาคำสั่งซื้อ
-        const orders = await findOrder();
+        const orders = await findOrder(userId);
 
         // ตรวจสอบว่ามีคำสั่งซื้อหรือไม่
         if (orders.length === 0) {
