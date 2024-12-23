@@ -58,7 +58,38 @@
             </div>
         </nav>
     </header>
-
+    
+    <section class="filter-bar container my-4">
+        <div class="row g-2 align-items-center">
+            <!-- ฟิลเตอร์ค้นหาสินค้า -->
+            <div class="col-md-4 d-flex">
+                <input type="text" id="filter-name" class="form-control me-2" placeholder="Search by product name...">
+                <button class="btn btn-warning text-white" id="search-button">Search</button>
+            </div>
+            <!-- ฟิลเตอร์ประเภทสินค้า -->
+            <div class="col-md-4">
+                <select id="filter-category" class="form-select">
+                    <option value="">All Categories</option>
+                    <option value="Cavendish Bananas">Cavendish Bananas</option>
+                    <option value="Traditional Bananas">Traditional Bananas</option>
+                    <option value="Exotic Banana Varieties">Exotic Banana Varieties</option>
+                    <option value="Rare or Indigenous Bananas">Rare or Indigenous Bananas</option>
+                </select>
+            </div>
+            <!-- ฟิลเตอร์ช่วงราคา -->
+            <div class="col-md-4">
+                <select id="filter-price" class="form-select">
+                    <option value="">All Prices</option>
+                    <option value="1">$1.00</option>
+                    <option value="2">$2.00</option>
+                    <option value="3">$3.00</option>
+                    <option value="4">$4.00</option>
+                </select>
+            </div>
+        </div>
+    </section>
+    
+    
     <section class="product-list container my-5">
         <h2 class="text-center mb-4">All Products</h2>
         
@@ -73,7 +104,7 @@
                             <p class="card-text">Price: $1.00</p>
                             <div class="button-group">
                             <button class="btn btn-warning btn-custom text-white add-to-cart"data-id="67616d7cb8e83a6eb26b65f7">Add to Cart</button>
-                            <button class="btn btn-warning btn-custom text-white show-now">Show now</button>
+                            <button class="btn btn-warning btn-custom text-white show-now"data-id="67616d7cb8e83a6eb26b65f7">Show now</button>
                             </div>
                         </div>
                     </div>
@@ -84,7 +115,10 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">Green Cavendish Banana</h5>
                             <p class="card-text">Price: $1.00</p>
-                            <button class="btn btn-warning btn-custom text-white"data-id="6761928e414982882fbb6437">Add to Cart</button>
+                            <div class="button-group">
+                                <button class="btn btn-warning btn-custom text-white add-to-cart"data-id="6761928e414982882fbb6437">Add to Cart</button>
+                                <button class="btn btn-warning btn-custom text-white show-now"data-id="6761928e414982882fbb6437">Show now</button>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -94,7 +128,10 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">Moon Cavendish Banana</h5>
                             <p class="card-text">Price: $1.00</p>
-                            <button class="btn btn-warning btn-custom text-white"data-id="6761928e414982882fbb6438">Add to Cart</button>
+                            <div class="button-group">
+                                <button class="btn btn-warning btn-custom text-white add-to-cart"data-id="6761928e414982882fbb6438">Add to Cart</button>
+                                <button class="btn btn-warning btn-custom text-white show-now"data-id="6761928e414982882fbb6438">Show now</button>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -110,7 +147,10 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">Namwa Banana</h5>
                             <p class="card-text">Price: $1.00</p>
-                            <button class="btn btn-warning btn-custom text-white"data-id="6761928e414982882fbb6439">Add to Cart</button>
+                            <div class="button-group">
+                                <button class="btn btn-warning btn-custom text-white add-to-cart"data-id="6761928e414982882fbb6439">Add to Cart</button>
+                                <button class="btn btn-warning btn-custom text-white show-now"data-id="6761928e414982882fbb6439">Show now</button>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -120,7 +160,10 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">Egg Banana</h5>
                             <p class="card-text">Price: $2.00</p>
-                            <button class="btn btn-warning btn-custom text-white"data-id="6761928e414982882fbb643a">Add to Cart</button>
+                            <div class="button-group">
+                                <button class="btn btn-warning btn-custom text-white add-to-cart"data-id="6761928e414982882fbb643a">Add to Cart</button>
+                                <button class="btn btn-warning btn-custom text-white show-now"data-id="6761928e414982882fbb643a">Show now</button>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -130,7 +173,10 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">Lady Finger Banana</h5>
                             <p class="card-text">Price: $4.00</p>
-                            <button class="btn btn-warning btn-custom text-white"data-id="6761928e414982882fbb643b">Add to Cart</button>
+                            <div class="button-group">
+                                <button class="btn btn-warning btn-custom text-white add-to-cart"data-id="6761928e414982882fbb643b">Add to Cart</button>
+                                <button class="btn btn-warning btn-custom text-white show-now"data-id="6761928e414982882fbb643b">Show now</button>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -145,7 +191,10 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">Cavendish Banana (Imported)</h5>
                             <p class="card-text">Price: $1.00</p>
-                            <button class="btn btn-warning btn-custom text-white"data-id="6761928e414982882fbb643c">Add to Cart</button>
+                            <div class="button-group">
+                                <button class="btn btn-warning btn-custom text-white add-to-cart"data-id="6761928e414982882fbb643c">Add to Cart</button>
+                                <button class="btn btn-warning btn-custom text-white show-now"data-id="6761928e414982882fbb643c">Show now</button>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -155,7 +204,10 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">Grand Nain Banana</h5>
                             <p class="card-text">Price: $2.00</p>
-                            <button class="btn btn-warning btn-custom text-white"data-id="6761928e414982882fbb643d">Add to Cart</button>
+                            <div class="button-group">
+                                <button class="btn btn-warning btn-custom text-white add-to-cart"data-id="6761928e414982882fbb643d">Add to Cart</button>
+                                <button class="btn btn-warning btn-custom text-white show-now"data-id="6761928e414982882fbb643d">Show now</button>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -165,7 +217,10 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">Red Mauritius Banana (Red Banana)</h5>
                             <p class="card-text">Price: $3.00</p>
-                            <button class="btn btn-warning btn-custom text-white"data-id="6761928e414982882fbb643e">Add to Cart</button>
+                            <div class="button-group">
+                                <button class="btn btn-warning btn-custom text-white add-to-cart"data-id="6761928e414982882fbb643e">Add to Cart</button>
+                                <button class="btn btn-warning btn-custom text-white show-now"data-id="6761928e414982882fbb643e">Show now</button>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -180,7 +235,10 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">Wild Banana</h5>
                             <p class="card-text">Price: $1.00</p>
-                            <button class="btn btn-warning btn-custom text-white"data-id="6761928e414982882fbb643f">Add to Cart</button>
+                            <div class="button-group">
+                                <button class="btn btn-warning btn-custom text-white add-to-cart"data-id="6761928e414982882fbb643f">Add to Cart</button>
+                                <button class="btn btn-warning btn-custom text-white show-now"data-id="6761928e414982882fbb643f">Show now</button>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -190,7 +248,10 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">Theppanom Banana</h5>
                             <p class="card-text">Price: $4.00</p>
-                            <button class="btn btn-warning btn-custom text-white"data-id="6761928e414982882fbb6440">Add to Cart</button>
+                            <div class="button-group">
+                                <button class="btn btn-warning btn-custom text-white add-to-cart"data-id="6761928e414982882fbb6440">Add to Cart</button>
+                                <button class="btn btn-warning btn-custom text-white show-now"data-id="6761928e414982882fbb6440">Show now</button>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -200,7 +261,10 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">Chat Phra-In Banana</h5>
                             <p class="card-text">Price: $3.00</p>
-                            <button class="btn btn-warning btn-custom text-white"data-id="6761928e414982882fbb6441">Add to Cart</button>
+                            <div class="button-group">
+                                <button class="btn btn-warning btn-custom text-white add-to-cart"data-id="6761928e414982882fbb6441">Add to Cart</button>
+                                <button class="btn btn-warning btn-custom text-white show-now"data-id="6761928e414982882fbb6441">Show now</button>
+                                </div>
                         </div>
                     </div>
                 </div>

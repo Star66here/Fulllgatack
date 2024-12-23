@@ -449,6 +449,15 @@ header {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
+.d-flex {
+    display: flex;
+    align-items: center;
+}
+
+.me-2 {
+    margin-right: 0.5rem; /* เพิ่มระยะห่างระหว่างช่องกรอกและปุ่ม */
+}
+
 /* Responsive Typography */
 @media (max-width: 768px) {
     h1, h2 {
