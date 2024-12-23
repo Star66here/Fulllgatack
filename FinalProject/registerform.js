@@ -190,12 +190,63 @@ app.get('/profile', async (req, res) => {
                 <p><strong>อีเมล:</strong> ${user.email}</p>
                 <p><strong>เบอร์โทร:</strong> ${user.phone || '-'}</p>
                 <p><strong>ที่อยู่:</strong> ${user.address || '-'}</p>
+                <a href="/users">ดูรายชื่อสมาชิก</a>
                 <a href="/logout">ออกจากระบบ</a>
             </body>
             </html>
         `);
     } catch (error) {
         console.error('Error loading profile:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+// Route สำหรับแสดงรายชื่อผู้ใช้
+app.get('/users', async (req, res) => {
+    try {
+        if (!req.session.userId) {
+            return res.redirect('/login');
+        }
+
+        const users = await User.find({}, { password: 0 });
+
+        let usersList = '<h1>รายชื่อสมาชิก</h1><table border="1"><tr><th>ชื่อ</th><th>อีเมล</th><th>เบอร์โทร</th><th>ที่อยู่</th><th>การจัดการ</th></tr>';
+        users.forEach(user => {
+            usersList += `<tr>
+                <td>${user.name}</td>
+                <td>${user.email}</td>
+                <td>${user.phone || '-'}</td>
+                <td>${user.address || '-'}</td>
+                <td>
+                    <form method="POST" action="/delete-user" style="display:inline;">
+                        <input type="hidden" name="userId" value="${user._id}">
+                        <button type="submit" style="background-color: red; color: white;">ลบ</button>
+                    </form>
+                </td>
+            </tr>`;
+        });
+        usersList += '</table><a href="/profile">กลับไปโปรไฟล์</a>';
+
+        res.send(usersList);
+    } catch (error) {
+        console.error('Error loading users list:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+// Route สำหรับลบผู้ใช้
+app.post('/delete-user', async (req, res) => {
+    try {
+        if (!req.session.userId) {
+            return res.redirect('/login');
+        }
+
+        const { userId } = req.body;
+        await User.findByIdAndDelete(userId);
+
+        res.redirect('/users');
+    } catch (error) {
+        console.error('Error deleting user:', error);
         res.status(500).send('Internal Server Error');
     }
 });

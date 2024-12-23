@@ -1,4 +1,3 @@
-
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
@@ -53,5 +52,6 @@ app.get('/purchase-history', async (req, res) => {
 
 app.use(express.static(__dirname));
 
-const PORT = 4000;
+const PORT = 3000;
 app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
+
