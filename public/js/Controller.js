@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // เพิ่มการทำงานสำหรับปุ่ม Remove
-    document.querySelectorAll('.remove-item').forEach(button => {
+document.querySelectorAll('.remove-item').forEach(button => {
         button.addEventListener('click', (event) => {
             const productId = event.target.closest('.cart-item').dataset.id;  // ดึง id ของสินค้าที่คลิก
             removeFromCart(productId);  // เรียกใช้ฟังก์ชัน removeFromCart() จาก cart.js
