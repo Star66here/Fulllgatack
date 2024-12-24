@@ -51,3 +51,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('container');
+    const urlParams = new URLSearchParams(window.location.search);
+
+    // หากมี `showSignin=true` ใน URL ให้แสดงฟอร์ม Sign In
+    if (urlParams.has('showSignin')) {
+        container.classList.add('active');
+    }
+
+    // เพิ่ม Event Listener สำหรับสลับฟอร์ม
+    document.getElementById('register').addEventListener('click', () => {
+        container.classList.add('active');
+    });
+
+    document.getElementById('login').addEventListener('click', () => {
+        container.classList.remove('active');
+    });
+});
+
